@@ -19,24 +19,18 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
-
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
-Jump boxes improve a company’s network security by having a secure central location that must be connected to first before launching any tasks.
 
+Jump boxes improve a company’s network security by having a secure central location that must be connected to first before launching any tasks.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the files and system metrics.
 
-- _TODO: What does Filebeat watch for? 
-
 Filebeat monitors log files to collect log events. Information is then forwarded to either Logstash or Elasticsearch to be indexed.
-
-- _TODO: What does Metricbeat record?
 
 _Metricbeat records metrics from the server and OS.
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
+
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
@@ -44,6 +38,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | ELK-VM   | ELKServer| 10.1.0.4   | Linux            |
 | Web1     | Webserver| 10.0.0.5   | Linux            |
 | Web2     | Webserver| 10.0.0.6   | Linux            |
+| Web3     | Webserver| 10.0.0.7   | Linux            |
 
 ### Access Policies
 
@@ -51,13 +46,9 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the Jumpbox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 
-- _TODO: Add whitelisted IP addresses_
+MY Public IP
 
-	MY Public IP
-
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
-
-Machines within the network can only be accessed by Jumpbox IP 10.0.0.4.
+ELK VM can only be accessed by Jumpbox IP 10.0.0.4.
 
 A summary of the access policies in place can be found in the table below.
 
@@ -70,8 +61,6 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-
-- _TODO: What is the main advantage of automating configuration with Ansible?
 
 This helps to eliminate variability between configurations and limits multiple mistakes.
 
@@ -87,9 +76,10 @@ _Downloads and launches a docker ELK container with the following published port
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+https://github.com/bryac6/My-Cybersecurity-Studies/blob/main/Images/docker_ps_output.png.PNG
 
 ### Target Machines & Beats
+
 This ELK server is configured to monitor the following machines:
  Web-1 10.0.0.5, Web-2 10.0.0.6, Web-3 10.0.0.7
 
@@ -117,7 +107,9 @@ _TODO: Answer the following questions to fill in the blanks:_
 
 _Which file do you update to make Ansible run the playbook on a specific machine?
 
- You update the hosts file. How do I specify which machine to install the ELK server on versus which to install Filebeat on? 
+ You update the hosts file. 
+ 
+ How do I specify which machine to install the ELK server on versus which to install Filebeat on? 
 
 Add the private IP under “servers”
 
