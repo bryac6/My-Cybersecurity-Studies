@@ -34,8 +34,8 @@ The configuration details of each machine may be found below.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.4   | Linux            |
-| ELK-VM   | ELKServer| 10.1.0.4   | Linux            |
+| JumpBox  | Gateway  | 10.0.0.4   | Linux            |
+|ELK-Server|Monitoring| 10.1.0.4   | Linux            |
 | Web1     | Webserver| 10.0.0.5   | Linux            |
 | Web2     | Webserver| 10.0.0.6   | Linux            |
 | Web3     | Webserver| 10.0.0.7   | Linux            |
