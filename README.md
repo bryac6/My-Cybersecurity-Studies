@@ -101,20 +101,3 @@ Update the hosts file to include the Elk Server IP address of 10.1.0.4 under elk
 Run the playbook, ansible-playbook elk-playbook.yml, and navigate to http://104.42.77.249:5601/app/kibana#/home to check that Kibana is running.
 
 
-_TODO: Answer the following questions to fill in the blanks:_
-
-:/etc/ansible/elk-playbook.yml. You copy it to the directory.
-
-_Which file do you update to make Ansible run the playbook on a specific machine?
-
- You update the hosts file. 
- 
- How do I specify which machine to install the ELK server on versus which to install Filebeat on? 
-
-Add the private IP under “servers”
-
-_Which URL do you navigate to in order to check that the ELK server is running?
-
- http://104.42.77.249:5601/app/kibana#/home
-
-
