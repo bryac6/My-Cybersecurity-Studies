@@ -28,7 +28,7 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 
 Filebeat monitors log files to collect log events. Information is then forwarded to either Logstash or Elasticsearch to be indexed.
 
-_Metricbeat records metrics from the server and OS.
+Metricbeat records metrics from the server and OS.
 
 The configuration details of each machine may be found below.
 
@@ -45,7 +45,7 @@ The configuration details of each machine may be found below.
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the Jumpbox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jumpbox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: 
 
 MY Public IP
 
