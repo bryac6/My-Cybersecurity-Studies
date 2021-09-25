@@ -1,67 +1,37 @@
 ---
-  - name: installing and launching metricbeat
-    hosts: webservers
-    become: yes
-    tasks:
+- name: Install metric beat
+  hosts: webservers
+  become: true
+  tasks:
 
-# Download the .deb file from artifacts.elastic.co.
-    - name: download metricbeat deb
-      command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+    # Use command module
+  - name: Download metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4.0-amd64.deb
 
-    - name: Connecting
-      output.elasticsearch:
-      hosts: ["http://104.42.77.249:5601"]
-      username: "elastic"
-      password: "<password>"
-      setup.kibana:
-#     host: http://104.42.77.249:5601
+    # Use command module
+  - name: install metricbeat
+    command: dpkg -i metricbeat-7.6.1-amd64.deb
 
+    # Use copy module
+  - name: drop in metricbeat config
+    copy:
+      src: /etc/ansible/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
 
-# Install the .deb file using the dpkg c
-    - name: install metricbeat deb
-      command: dpkg -i metricbeat-7.6.1-amd64.deb
+    # Use command module
+  - name: enable and configure docker module for metric beat
+    command: metricbeat modules enable docker
 
+    # Use command module
+  - name: setup metric beat
+    command: metricbeat setup
 
+    # Use command module
+  - name: start metric beat
+    command: service metricbeat start
 
-# Copy the metricbeat configuration file from your Ansible container to your WebVM's where you just installed metricbeat. Make sure it is copied to: /etc/metricbeat/metricbeat.yml
-    - name: drop in metricbeat.yml
-      copy:
-        src: /etc/ansible/roles/metricbeat-config.yml
-        dest: /etc/metricbeat/metricbeat.yml
-
-
-
-
-
- # metricbeat modules enable system
-
-    - name: enable and configure system module
-      command: metricbeat modules enable docker
-
-
-
-
-# metricbeat setup
-#    - name: metricbeat setup
-#      command: metricbeat setup
-
-#    - name: start metricbeat service
-#      command: service metricbeat start
-
-#  Starts metricbeat and enables the on boot
-#    - name: start metricbeat -e service
-#      systemd:
-
-#    - name: enable metricbeat on boot
-#      command: systemctl enable metricbeat
-
-# metricbeat setup
-#    - name: setup metricbeat
-#      command: service metricbeat -e start
-
-# metricbeat start/setup
-    - name: metricbeat setup
-      command: metricbeat setup -e
-    - name: start metricbeat service
-      command: service metricbeat start -e
-root@81176c84503c:/etc/ansible/My-Cybersecurity-Studies/Ansible#
+    # Use systemd module
+  - name: Enable service metricbeat on boot
+    systemd:
+      name: metricbeat
+      enabled: yes
